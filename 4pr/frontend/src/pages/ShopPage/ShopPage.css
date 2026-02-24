@@ -1,0 +1,72 @@
+.shop {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+.shop h1 {
+  margin-bottom: 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.card .price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+.card .actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 8px;
+}
+.card button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+.card .edit {
+  background: #3498db;
+  color: white;
+}
+.card .delete {
+  background: #e74c3c;
+  color: white;
+}
+
+.addBtn {
+  background: #2ecc71;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}/*# sourceMappingURL=ShopPage.css.map */

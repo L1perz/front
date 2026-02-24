@@ -1,0 +1,264 @@
+/* Общий фон страницы */
+body {
+    background: #0b1220;
+    margin: 0;
+}
+
+
+/* Основной контейнер */
+.shop {
+    min-height: 100vh;
+    padding: 30px 40px;
+    color: #e5e7eb;
+    font-family: system-ui, Arial, sans-serif;
+}
+
+
+/* Верхняя панель */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+
+    h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+}
+
+
+/* Кнопка "Добавить" */
+.addBtn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+
+/* Контейнер списка товаров */
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* Одна строка товара */
+.card {
+    display: grid;
+
+    /* Колонки: картинка | название | категория | цена | остаток | кнопки */
+    grid-template-columns: 70px 1fr 140px 100px 90px 220px;
+
+    align-items: center;
+    gap: 14px;
+
+    background: #020617;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+
+    padding: 12px 16px;
+
+    transition: border-color 0.2s;
+
+    &:hover {
+        border-color: #2563eb;
+    }
+}
+
+
+/* Картинка */
+.card img {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #111827;
+}
+
+
+/* Название */
+.card h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}
+
+
+/* Обычный текст */
+.card p {
+    margin: 0;
+    font-size: 13px;
+    color: #cbd5f5;
+}
+
+
+/* Цена */
+.card .price {
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+
+/* Кнопки справа */
+.card .actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+
+/* Общий стиль кнопок */
+.card button {
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+
+/* Кнопка редактирования */
+.card .edit {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* Кнопка удаления */
+.card .delete {
+    background: #dc2626;
+    color: white;
+}
+
+
+.card button:hover {
+    opacity: 0.85;
+}
+
+/* Затемнение фона */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+/* Контейнер модального окна */
+.modal {
+    background: #020617;
+    padding: 24px;
+    border-radius: 12px;
+    width: 500px;
+    max-width: 95%;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+}
+
+/* Заголовок модалки */
+.modal h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Форма внутри модалки */
+.modal form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Поля ввода */
+.modal input {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: #0f172a;
+    color: white;
+    outline: none;
+}
+
+/* Поле описания на всю ширину */
+.modal input[name="description"] {
+    grid-column: span 2;
+}
+
+/* Блок кнопок */
+.modal .actions {
+    grid-column: span 2;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Кнопка сохранить */
+.modal .save {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #052e16;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Эффект наведения */
+.modal .save:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* Кнопка отмена */
+.modal .cancel {
+    background: #1f2933;
+    color: #e5e7eb;
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+}
+
+.modal .cancel:hover {
+    background: #374151;
+}
+
+/* Адаптация под маленькие экраны */
+@media (max-width: 900px) {
+
+    .card {
+        grid-template-columns: 60px 1fr;
+        grid-template-rows: auto auto auto;
+        row-gap: 8px;
+    }
+
+    .card .actions {
+        justify-content: flex-start;
+    }
+
+}
