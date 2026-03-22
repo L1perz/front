@@ -1,0 +1,474 @@
+/* Общий фон страницы */
+body {
+    background: #0b1220;
+    margin: 0;
+}
+
+
+/* Основной контейнер */
+.shop {
+    min-height: 100vh;
+    padding: 30px 40px;
+    color: #e5e7eb;
+    font-family: system-ui, Arial, sans-serif;
+}
+
+
+/* Верхняя панель */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+
+    h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.modal {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    color: white;
+}
+
+.modal h2 {
+    margin-bottom: 15px;
+}
+
+.userRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #2a2a2a;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+.modal select {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    
+    padding: 5px;
+    border-radius: 6px;
+}
+
+
+.modal button:hover {
+    background: #555;
+}
+
+.modal .block {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Кнопка "Добавить" */
+.addBtn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+
+/* Контейнер списка товаров */
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* Одна строка товара */
+.card {
+    display: grid;
+
+    /* Колонки: картинка | название | категория | цена | остаток | кнопки */
+    grid-template-columns: 70px 1fr 140px 100px 90px 220px;
+
+    align-items: center;
+    gap: 14px;
+
+    background: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+
+    padding: 12px 16px;
+
+    transition: border-color 0.2s;
+
+    &:hover {
+        border-color: #2563eb;
+    }
+}
+
+
+/* Картинка */
+.card img {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #111827;
+}
+
+
+/* Название */
+.card h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}
+
+
+/* Обычный текст */
+.card p {
+    margin: 0;
+    font-size: 13px;
+    color: #cbd5f5;
+}
+
+
+/* Цена */
+.card .price {
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+
+/* Кнопки справа */
+.card .actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+
+/* Общий стиль кнопок */
+.card button {
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+
+/* Кнопка редактирования */
+.card .edit {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* Кнопка удаления */
+.card .delete {
+    background: #dc2626;
+    color: white;
+}
+
+
+.card button:hover {
+    opacity: 0.85;
+}
+
+/* Описание товара */
+.card .description {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 4px;
+
+    /* Ограничение в 2 строки */
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Затемнение фона */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+/* Контейнер модального окна */
+.modal {
+    background: #020617;
+    padding: 24px;
+    border-radius: 12px;
+    width: 500px;
+    max-width: 95%;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Заголовок модалки */
+.modal h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Форма внутри модалки */
+/* Форма модального окна */
+.modal .form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Один блок поля */
+.modal .field {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Подписи */
+.modal label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #94a3b8;
+}
+
+/* Инпуты — одинаковые */
+.modal input {
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #0f172a;
+    color: white;
+    font-size: 14px;
+    transition: border 0.2s;
+}
+
+.modal input:focus {
+    border-color: #2563eb;
+}
+
+.modal input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: white;
+}
+
+.modalBtn {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.modalBtn.register {
+    background: #10b981;
+    color: white;
+}
+
+.modalBtn.register:hover {
+    background: #059669;
+}
+
+.modalBtn.cancel {
+    background: #374151;
+    color: white;
+}
+
+.modalBtn.cancel:hover {
+    background: #1f2937;
+}
+
+/* Кнопки */
+.modal .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.authButtons {
+    display: flex;
+    gap: 10px;
+}
+
+/* затемнение фона */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+/* само окно */
+.modal {
+    background: #0f172a;
+    padding: 30px;
+    border-radius: 10px;
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* кнопка входа */
+.loginBtn {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.loginBtn:hover {
+    transform: translateY(-1px);
+    background: #2563eb;
+}
+
+/* кнопка регистрации */
+.registerBtn {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.registerBtn:hover {
+    transform: translateY(-1px);
+    background: #059669;
+}
+
+/* кнопка выхода */
+.logoutBtn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+
+/* Кнопка сохранить */
+.modal .save {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #052e16;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Эффект наведения */
+.modal .save:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* Кнопка отмена */
+.modal .cancel {
+    background: #1f2933;
+    color: #e5e7eb;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+    cursor: pointer;
+}
+
+.modal .cancel:hover {
+    background: #374151;
+}
+
+/* Адаптация под маленькие экраны */
+@media (max-width: 900px) {
+
+    .card {
+        grid-template-columns: 60px 1fr;
+        grid-template-rows: auto auto auto;
+        row-gap: 8px;
+    }
+
+    .card .actions {
+        justify-content: flex-start;
+    }
+
+}
