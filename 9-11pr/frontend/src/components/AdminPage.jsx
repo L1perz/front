@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import apiClient from "../api/axios";
 
 export default function AdminPage({ open, onClose }) {
 
@@ -14,7 +14,7 @@ export default function AdminPage({ open, onClose }) {
     });
     const loadUsers = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/users", {
+            const res = await apiClient.get("http://localhost:3000/api/users", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -34,7 +34,7 @@ export default function AdminPage({ open, onClose }) {
         });
     };
     const saveUser = async () => {
-        await axios.put(
+        await apiClient.put(
             `http://localhost:3000/api/users/${editingUser.id}`,
             form,
             {
@@ -52,7 +52,7 @@ export default function AdminPage({ open, onClose }) {
     }, [open]);
 
     const changeRole = async (id, role) => {
-        await axios.put(
+        await apiClient.put(
             `http://localhost:3000/api/users/${id}`,
             { role },
             {
@@ -64,7 +64,7 @@ export default function AdminPage({ open, onClose }) {
         loadUsers();
     };
     const toggleBlock = async (id) => {
-        await axios.patch(
+        await apiClient.patch(
             `http://localhost:3000/api/users/${id}/block`,
             {},
             {

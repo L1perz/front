@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import apiClient from "../api/axios";
 
 function LoginModal({ onClose, onLogin }) {
 
@@ -10,7 +10,7 @@ function LoginModal({ onClose, onLogin }) {
 
         try {
 
-            const res = await axios.post(
+            const res = await apiClient.post(
                 "http://localhost:3000/api/auth/login",
                 { email, password }
             );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import apiClient from "../api/axios";
 
 export default function RegisterModal({ onClose }) {
 
@@ -11,7 +11,7 @@ export default function RegisterModal({ onClose }) {
 
         try {
 
-            await axios.post(
+            await apiClient.post(
                 "http://localhost:3000/api/auth/register",
                 {
                     email,
