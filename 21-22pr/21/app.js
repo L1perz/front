@@ -115,19 +115,27 @@ function roleMiddleware(roles) {
 }
 
 // ---------- КЭШИРОВАНИЕ ----------
-const USERS_CACHE_TTL = 60;      // 1 минута
-const PRODUCTS_CACHE_TTL = 600;  // 10 минут
+const USERS_CACHE_TTL = 60;      // 1 минута для пользователей
+const PRODUCTS_CACHE_TTL = 600;  // 10 минут для товаров
 
+// Middleware для проверки наличия данных в Redis перед обработкой запроса
 function cacheMiddleware(keyBuilder, ttl) {
     return async (req, res, next) => {
         try {
             const key = keyBuilder(req);
+            
             const cachedData = await redisClient.get(key);
+            
             if (cachedData) {
-                return res.json({ source: "cache", data: JSON.parse(cachedData) });
+                return res.json({ 
+                    source: "cache", 
+                    data: JSON.parse(cachedData) 
+                });
             }
+            
             req.cacheKey = key;
             req.cacheTTL = ttl;
+            
             next();
         } catch (err) {
             console.error("Cache read error:", err);
@@ -136,6 +144,7 @@ function cacheMiddleware(keyBuilder, ttl) {
     };
 }
 
+// Функция для сохранения данных в Redis после того, как основной обработчик получил их
 async function saveToCache(key, data, ttl) {
     try {
         await redisClient.setEx(key, ttl, JSON.stringify(data));
@@ -144,6 +153,7 @@ async function saveToCache(key, data, ttl) {
     }
 }
 
+// Инвалидация кэша пользователей
 async function invalidateUsersCache(userId = null) {
     try {
         await redisClient.del("users:all");
@@ -153,6 +163,7 @@ async function invalidateUsersCache(userId = null) {
     }
 }
 
+// Инвалидация кэша товаров
 async function invalidateProductsCache(productId = null) {
     try {
         await redisClient.del("products:all");

@@ -29,7 +29,6 @@ services:
       - lb-net
     restart: unless-stopped
 
-  # Nginx балансировщик на порту 80
   nginx:
     image: nginx:alpine
     container_name: nginx-lb
@@ -45,21 +44,6 @@ services:
       - lb-net
     restart: unless-stopped
 
-  # HAProxy балансировщик на порту 8080
-  haproxy:
-    image: haproxy:latest
-    container_name: haproxy-lb
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
-    depends_on:
-      - backend1
-      - backend2
-      - backend3
-    networks:
-      - lb-net
-    restart: unless-stopped
 
 networks:
   lb-net:
